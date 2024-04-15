@@ -13,7 +13,7 @@ app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-app.get('/', verifyAccessToken, async (req, res, next) => {
+app.get('/dashboard', verifyAccessToken, async (req, res, next) => {
   const user = await User.findOne({ _id: req.payload.aud })
   let firstName = 'Customer';
   if (user.email.includes('.')) {
@@ -22,6 +22,12 @@ app.get('/', verifyAccessToken, async (req, res, next) => {
   }
   res.send(`Hello ${firstName}, Welcome to dashboard`);
 })
+
+app.get('/', async (req, res, next) => {
+  res.send(`Hello , Please login to connect to us`);
+})
+
+
 
 app.use('/auth', AuthRoute)
 
