@@ -6,4 +6,6 @@ router.post('/register', AuthController.register)
 
 router.post('/login', AuthController.login)
 
+router.post('/sendOTP',AuthController.sendOTP)
+
 module.exports = router
